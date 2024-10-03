@@ -1,24 +1,34 @@
 import { createTheme } from '@mui/material/styles';
 
-// Define your color palette
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#201E43', // Primary color (e.g.,darkblue)
+      main: '#0096FF', 
+      dark: '#1A4489', 
     },
     secondary: {
-      main: '#9cc0cf', // Secondary color (e.g., gray)
+      main: '#414141', 
+      dark: '#121114', 
+      light: '#282728', 
+    },
+    warning: {
+      main: '#FFE234', 
+    },
+    error: {
+      main: '#9b1136', 
+    },
+    success: {
+      main: '#1a7b64',
     },
     background: {
-      default: '#fff', // Background color for the app
+      default: '#EFEFEF', 
     },
     text: {
-      primary: '#333', // Primary text color
-      secondary: '#555', // Secondary text color
+      primary: '#1354C0', 
+      secondary: '#9E9E9E', 
     },
   },
   typography: {
-    // Customize typography here
     fontFamily: 'Roboto, Arial, sans-serif',
     h1: {
       fontSize: '2.5rem',
@@ -28,7 +38,9 @@ const theme = createTheme({
       fontSize: '2rem',
       fontWeight: 'bold',
     },
-    // Add more typography customization as needed
+  },
+  shape: {
+    borderRadius: 10, 
   },
 });
 
