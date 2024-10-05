@@ -6,7 +6,7 @@ const PATH = 'api/contracts';
 export const getAllContractsService = async () => {
   let token = Cookies.get('token');
   try {
-    const response = await axios.get(`${API_URL}/${PATH}`, {
+    const response = await axios.get(`${API_URL}/api/admins/contracts`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
