@@ -55,225 +55,184 @@ function UserDetails() {
 
   return (
     <Container
-      disableGutters
-      maxWidth={false}
+    disableGutters
+    maxWidth={false}
+    sx={{
+      width: "100%",
+      minHeight: "100vh",
+      backgroundColor: "black",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      color: "white",
+    }}
+  >
+    <Container
       sx={{
-        width: "100%",
-        minHeight: "100vh",
-        backgroundColor: "black",
+        marginTop: "40px", // Added larger margin for spacing
         display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        color: "white",
+        flexDirection: "column",
+        backgroundColor: theme.palette.secondary.light,
+        width: 700, // Slightly narrower for a cleaner look
+        borderRadius: 3,
+        boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)", // Add a subtle shadow for depth
+        padding: "24px", // Added padding inside container
+        mb: 3,
       }}
     >
-      <Container
-        sx={{
-          marginTop: "20px",
-          display: "flex",
-          flexDirection: "column",
-          backgroundColor: theme.palette.secondary.light,
-          width: 800,
-          borderRadius: 3,
-          mb:3
-        }}
+      {/* Avatar & Name Section */}
+      <Stack
+        flexDirection={"row"}
+        justifyContent={"space-between"}
+        alignItems="center"
+        sx={{ paddingBottom: "24px", borderBottom: `1px solid ${theme.palette.divider}` }} // Added border for section separation
       >
-        {/* //Avtar& name */}
-        <Stack
-          flexDirection={"row"}
-          justifyContent={"space-between"}
-          p={2}
-          sx={{ padding: "20px" }}
-        >
-          <Stack flexDirection={"row"}>
-            <Avatar
-              alt="profile photo"
-              src={user.userPhotoUrl}
-              sx={{ width: 130, height: 130, margin: "10px" }}
-            />
-            <Stack margin={"22px 0"}>
-              <Typography
-                variant="h5"
-                component={"p"}
-                color={theme.palette.text.primary}
-              >
-                {user.name?.charAt(0).toUpperCase() + user.name?.slice(1)}
-              </Typography>
-              <Typography
-                variant="subtitle1"
-                color={theme.palette.text.secondary}
-              >
-                &nbsp;{user.role?.charAt(0).toUpperCase() + user.role?.slice(1)}
-              </Typography>
-              <Typography
-                variant="body2"
-                color={
-                  user.verified
-                    ? theme.palette.success.main
-                    : theme.palette.error.main
-                }
-              >
-                &nbsp; {user.verified ? "Verified" : "Not verified"}
-              </Typography>
-            </Stack>
-          </Stack>
-          <Stack margin={2}>
+        <Stack flexDirection={"row"} alignItems="center">
+          <Avatar
+            alt="profile photo"
+            src={user.userPhotoUrl}
+            sx={{ width: 120, height: 120, marginRight: "16px" }}
+          />
+          <Stack>
             <Typography
-              variant="subtitle1"
-              gutterBottom
-              component={"p"}
-              color={theme.palette.text.secondary}
-              sx={{ display: "flex", alignItems: "center" }}
+              variant="h5"
+              color={theme.palette.text.primary}
+              sx={{ fontWeight: "bold" }} // Make the name bold for emphasis
             >
-              <PhoneIcon
-                sx={{ marginRight: "8px", color: theme.palette.text.primary }}
-              />
-              {user.phone}
+              {user.name?.charAt(0).toUpperCase() + user.name?.slice(1)}
+            </Typography>
+            <Typography variant="subtitle1" color={theme.palette.text.secondary}>
+              {user.role?.charAt(0).toUpperCase() + user.role?.slice(1)}
             </Typography>
             <Typography
-              variant="subtitle1"
-              gutterBottom
-              component={"p"}
-              color={theme.palette.text.secondary}
-              sx={{ display: "flex", alignItems: "center" }}
+              variant="body2"
+              sx={{
+                color: user.verified
+                  ? theme.palette.success.main
+                  : theme.palette.error.main,
+                fontWeight: "bold",
+              }}
             >
-              <BadgeIcon
-                sx={{ marginRight: "8px", color: theme.palette.text.primary }}
-              />
-              {user.nationalId}
-            </Typography>
-            <Typography
-              variant="subtitle1"
-              gutterBottom
-              component={"p"}
-              color={theme.palette.text.secondary}
-              sx={{ display: "flex", alignItems: "center" }}
-            >
-              <EmailIcon
-                sx={{ marginRight: "8px", color: theme.palette.text.primary }}
-              />
-              {user.email}
+              {user.verified ? "Verified" : "Not Verified"}
             </Typography>
           </Stack>
         </Stack>
-        <Stack margin={"10px 40px"}>
+        {/* Contact Info Section */}
+        <Stack>
           <Typography
             variant="subtitle1"
-            gutterBottom
-            component={"p"}
+            component="p"
+            color={theme.palette.text.secondary}
+            sx={{ display: "flex", alignItems: "center", mb: 1 }}
+          >
+            <PhoneIcon sx={{ marginRight: "8px", color: theme.palette.text.primary }} />
+            {user.phone}
+          </Typography>
+          <Typography
+            variant="subtitle1"
+            component="p"
+            color={theme.palette.text.secondary}
+            sx={{ display: "flex", alignItems: "center", mb: 1 }}
+          >
+            <BadgeIcon sx={{ marginRight: "8px", color: theme.palette.text.primary }} />
+            {user.nationalId}
+          </Typography>
+          <Typography
+            variant="subtitle1"
+            component="p"
+            color={theme.palette.text.secondary}
             sx={{ display: "flex", alignItems: "center" }}
-            color={theme.palette.text.white}
           >
-            <LocationOnIcon
-              sx={{ marginRight: "3px", color: theme.palette.text.secondary }}
-            />{" "}
-            {user.country?.charAt(0).toUpperCase() + user.country?.slice(1)}
-          </Typography>
-          <Typography
-            variant="subtitle1"
-            gutterBottom
-            component={"p"}
-            color={theme.palette.text.white}
-          >
-            <span style={{ color: theme.palette.text.secondary }}>
-              {" "}
-              &nbsp; Title :
-            </span>{" "}
-            {user.jobTitle || "Frontend Developer"}
-          </Typography>
-          <Typography
-            variant="subtitle1"
-            gutterBottom
-            component={"p"}
-            color={theme.palette.text.white}
-          >
-            <span style={{ color: theme.palette.text.secondary }}>
-              {" "}
-              &nbsp; Bio :{" "}
-            </span>
-            {user.bio?.charAt(0).toUpperCase() + user.bio?.slice(1) ||
-                 "Iam a freelancer"}
-          </Typography>
-          <Typography
-            variant="subtitle1"
-            gutterBottom
-            component={"p"}
-            color={theme.palette.text.white}
-          >
-            <span style={{ color: theme.palette.text.secondary }}>
-              {" "}
-              &nbsp; Skills :{" "}
-            </span>{" "}
-            {user.skills?.join(", ")||"js, css, html"}
+            <EmailIcon sx={{ marginRight: "8px", color: theme.palette.text.primary }} />
+            {user.email}
           </Typography>
         </Stack>
-
-        {/* // Id images */}
-        <Stack flexDirection={"row"} m={2}>
-          <Container>
-            <img
-              src={user.frontIdPhotoUrl}
-              alt="User Front ID"
-              style={{
-                objectFit: "cover",
-                borderRadius: "8px",
-                maxWidth: "100%",
-                height: "auto",
-                borderRadius: "8px",
-              }}
-            />
-            <Typography
-              variant="subtitle1"
-              align="center"
-              color={theme.palette.text.secondary}
-            >
-              Front ID
-            </Typography>
-          </Container>
-          <Container>
-            <img
-              src={user.backIdPhotoUrl}
-              alt="back Id Photo"
-              style={{
-                objectFit: "cover",
-                borderRadius: "8px",
-                maxWidth: "100%",
-                height: "auto",
-                borderRadius: "8px",
-              }}
-            />
-            <Typography
-              variant="subtitle1"
-              align="center"
-              color={theme.palette.text.secondary}
-            >
-              Back ID
-            </Typography>
-          </Container>
-        </Stack>
-        {/* //btn */}
-        <Stack alignSelf={"center"} m={2}>
-          <Button
-            variant="contained"
-            onClick={handleBtn}
-            disabled={Isloading}
-            sx={{
-              fontSize: 22,
-              textTransform: "none",
-              backgroundColor: theme.palette.primary.dark,
+      </Stack>
+  
+      {/* Additional Information Section */}
+      <Stack sx={{ padding: "24px 0", borderBottom: `1px solid ${theme.palette.divider}` }}>
+        <Typography variant="subtitle1" color={theme.palette.text.secondary} gutterBottom>
+          <LocationOnIcon sx={{ marginRight: "4px", verticalAlign: "middle" }} />
+          {user.country?.charAt(0).toUpperCase() + user.country?.slice(1)}
+        </Typography>
+        <Typography variant="subtitle1" color={theme.palette.text.primary} gutterBottom>
+          <span style={{ fontWeight: "bold", color: theme.palette.text.secondary }}>
+            Title:
+          </span>{" "}
+          {user.jobTitle || "Frontend Developer"}
+        </Typography>
+        <Typography variant="subtitle1" color={theme.palette.text.primary} gutterBottom>
+          <span style={{ fontWeight: "bold", color: theme.palette.text.secondary }}>
+            Bio:
+          </span>{" "}
+          {user.bio?.charAt(0).toUpperCase() + user.bio?.slice(1) || "I am a freelancer"}
+        </Typography>
+        <Typography variant="subtitle1" color={theme.palette.text.primary}>
+          <span style={{ fontWeight: "bold", color: theme.palette.text.secondary }}>
+            Skills:
+          </span>{" "}
+          {user.skills?.join(", ") || "JavaScript, CSS, HTML"}
+        </Typography>
+      </Stack>
+  
+      {/* ID Images Section */}
+      <Stack flexDirection={"row"} justifyContent="space-between" mt={2}>
+        <Container>
+          <img
+            src={user.frontIdPhotoUrl}
+            alt="User Front ID"
+            style={{
+              objectFit: "cover",
+              borderRadius: "8px",
+              maxWidth: "100%",
+              height: "auto",
             }}
-          >
-            {Isloading ? (
-        <CircularProgress size={24} sx={{ color: 'white' }} />
-       ) : (
-        'Approve'
-       )}
-          </Button>
-        </Stack>
-      </Container>
-
-      <Snackbar open={error} autoHideDuration={6000} message={errormessage} />
+          />
+          <Typography variant="subtitle2" align="center" color={theme.palette.text.secondary} mt={1}>
+            Front ID
+          </Typography>
+        </Container>
+        <Container>
+          <img
+            src={user.backIdPhotoUrl}
+            alt="User Back ID"
+            style={{
+              objectFit: "cover",
+              borderRadius: "8px",
+              maxWidth: "100%",
+              height: "auto",
+            }}
+          />
+          <Typography variant="subtitle2" align="center" color={theme.palette.text.secondary} mt={1}>
+            Back ID
+          </Typography>
+        </Container>
+      </Stack>
+  
+      {/* Approve Button */}
+      <Stack alignSelf={"center"} mt={3}>
+        <Button
+          variant="contained"
+          onClick={handleBtn}
+          disabled={Isloading}
+          sx={{
+            fontSize: "18px",
+            textTransform: "none",
+            backgroundColor: theme.palette.primary.dark,
+            "&:hover": {
+              backgroundColor: theme.palette.primary.main,
+            },
+            padding: "12px 24px",
+          }}
+        >
+          {Isloading ? <CircularProgress size={24} sx={{ color: "white" }} /> : "Approve"}
+        </Button>
+      </Stack>
     </Container>
+  
+    <Snackbar open={error} autoHideDuration={6000} message={errormessage} />
+  </Container>
+  
   );
 }
 
