@@ -99,6 +99,7 @@ export const updateMeService = async (name, email, phoneNumber) => {
 };
 
 
+
 export const getAllUsers = async () => {
   let token = Cookies.get('token');
   try {
@@ -155,4 +156,6 @@ export const verifyUser = async (userID) => {
       };
     }
   }
+
 };
+
