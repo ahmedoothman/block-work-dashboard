@@ -12,24 +12,25 @@ const Logo = () => {
       flexDirection="row"
       alignItems="center"
       justifyContent="center"
-      my={3}
+      my={2}
     >
       <Box
         component="img"
         src={logo}
         alt="BlockWork Logo"
         sx={{
-          width: 40,
-          height: 40,
+          width: 30,
+          height: 30,
           mr: 1, 
           color: theme.palette.primary.main,
         }}
       />
       <Typography
-        variant="h4"
+        variant="h6"
         sx={{
           color: theme.palette.primary.main,
-          fontWeight: 'regular',
+          fontWeight: 'bold',
+          
          
         }}
       >
