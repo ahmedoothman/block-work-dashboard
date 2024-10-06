@@ -1,6 +1,7 @@
 import {
   Avatar,
   Button,
+  CircularProgress,
   Container,
   Snackbar,
   Stack,
@@ -255,13 +256,18 @@ function UserDetails() {
           <Button
             variant="contained"
             onClick={handleBtn}
+            disabled={Isloading}
             sx={{
               fontSize: 22,
               textTransform: "none",
               backgroundColor: theme.palette.primary.dark,
             }}
           >
-            Approve
+            {Isloading ? (
+        <CircularProgress size={24} sx={{ color: 'white' }} />
+       ) : (
+        'Approve'
+       )}
           </Button>
         </Stack>
       </Container>
