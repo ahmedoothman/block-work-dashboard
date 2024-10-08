@@ -11,6 +11,7 @@ const UserDetails = lazy(() => import('./pages/UserDetails.jsx'));
 const Contracts = lazy(() => import('./pages/Contracts.jsx'));
 const ContractDetails=lazy(() => import('./pages/ContractDetails.jsx'))
 const ErrorPage = lazy(() => import('./pages/ErrorPage.jsx'));
+const Dashboard = lazy(() => import('./pages/Dashboard.jsx'));
 
 const DashboardLayout = lazy(() => import('./components/routing/DashboardLayout.jsx'));
 
@@ -30,6 +31,10 @@ const routes = [
           {
             path: 'users',
             element: <Users />,
+          },
+          {
+            path: 'dashboard',
+            element: <Dashboard />,
           },
           {
             path: 'user-details/:userId',  

@@ -22,7 +22,7 @@ import Logo from "../logo";
 import theme from "../../mui/theme";
 import Cookies from "js-cookie";
 
-const pages = ["Users", "Contracts"];
+const pages = ["Users", "Contracts","Dashboard"];
 function NavBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -150,7 +150,8 @@ function NavBar() {
               <Button
                 key={page}
                 component={Link}
-                to={`${page === "Users" ? "/users" : "/contracts"}`}
+                // to={`${page === "Users" ? "/users" : "/contracts"}`}
+                to={`/${page.toLowerCase()}`}
                 sx={{
                   my: 2,
 

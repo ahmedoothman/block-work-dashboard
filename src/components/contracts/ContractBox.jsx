@@ -42,7 +42,7 @@ function ContractBox({ contractData }) {
             <Typography
               sx={{ color: "white", fontSize: 19, textAlign: "center" }}
             >
-              {client.name}
+              {client?.name}
             </Typography>
           </Grid>
 
@@ -50,7 +50,7 @@ function ContractBox({ contractData }) {
             <Typography
               sx={{ color: "white", fontSize: 19, textAlign: "center" }}
             >
-              {freelancer.name}
+              {freelancer?.name}
             </Typography>
           </Grid>
 
@@ -58,7 +58,7 @@ function ContractBox({ contractData }) {
             <Typography
               sx={{ color: "white", fontSize: 19, textAlign: "center" }}
             >
-              {job?.description || "We need a React developer"}
+              {job?.description }
             </Typography>
           </Grid>
 

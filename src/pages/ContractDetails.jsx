@@ -8,67 +8,67 @@ import BadgeIcon from "@mui/icons-material/Badge";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 
 function ContractDetails() {
-    //  const { contracts} = useSelector((state) => state.contracts);
+     const { contracts} = useSelector((state) => state.contracts);
     // console.log("All contractsssssss",contracts);
-    // const { contractId } = useParams();
-    // const contract = contracts.find((contract) => contract.job._id === contractId);
-    const contract = {
-        amount: "10000",
-        client: {
-          __v: 0,
-          _id: "66f9b0e6a7d7a6329c4876b7",
-          accountCreatedAt: "2024-09-29T19:23:28.406Z",
-          backIdPhotoUrl: "https://firebasestorage.googleapis.com/v0/b/blockworkcloud.appspot.com/o/users%2F1727639770736_backIdPhoto.jpg?alt=media&token=9c705537-767a-4a4f-aa51-155280c1ec8e",
-          bio: "iam a freelancer",
-          country: "egypt",
-          email: "noranmohammed2310@gmail.com",
-          frontIdPhotoUrl: "https://firebasestorage.googleapis.com/v0/b/blockworkcloud.appspot.com/o/users%2F1727639770736_frontIdPhoto.jpg?alt=media&token=179fffe7-c5fa-41c2-9e1b-845d31d5bca2",
-          jobTitle: "Full stack web dev",
-          name: "Noran",
-          nationalId: "30103141401645",
-          phone: "01001548671",
-          role: "Client",
-          skills: [],
-          socketId: null,
-          userPhotoUrl: "https://firebasestorage.googleapis.com/v0/b/blockworkcloud.appspot.com/o/users%2F1727639770736_userPhoto.jpg?alt=media&token=7bb6a0cb-d60d-4992-b406-18723c8849ca",
-          verified: false
-        },
-        createdDate: "2024-09-30T18:19:24.000Z",
-        duration: "20",
-        freelancer: {
-          __v: 0,
-          _id: "66f9b0e6a7d7a6329c4876b7",
-          accountCreatedAt: "2024-09-29T19:23:28.406Z",
-          backIdPhotoUrl: "https://firebasestorage.googleapis.com/v0/b/blockworkcloud.appspot.com/o/users%2F1727639770736_backIdPhoto.jpg?alt=media&token=9c705537-767a-4a4f-aa51-155280c1ec8e",
-          bio: "iam a freelancer",
-          country: "egypt",
-          email: "Othman12@gmail.com",
-          frontIdPhotoUrl: "https://firebasestorage.googleapis.com/v0/b/blockworkcloud.appspot.com/o/users%2F1727639770736_frontIdPhoto.jpg?alt=media&token=179fffe7-c5fa-41c2-9e1b-845d31d5bca2",
-          jobTitle: "Full stack web dev",
-          name: "AhmedOthman",
-          nationalId: "30003110104659",
-          phone: "01064568074",
-          role: "freelancer",
-          skills: [],
-          socketId: null,
-          userPhotoUrl: "https://firebasestorage.googleapis.com/v0/b/blockworkcloud.appspot.com/o/users%2F1727639770736_userPhoto.jpg?alt=media&token=7bb6a0cb-d60d-4992-b406-18723c8849ca",
-          verified: false
-        },
-        job: {
-          __v: 0,
-          _id: "66f9740580822a876ce539e5",
-          budget: 2000,
-          category: "Web Development",
-          client: "66f8837ef3d43d1de8fd4976",
-          createdAt: "2024-09-29T15:36:37.275Z",
-          description: "We need a React developer",
-          duration: 10,
-          isActive: true,
-          skillsRequired: [],
-          title: "Frontend Developer Needed"
-        },
-        status: "0"
-      };
+    const { contractId } = useParams();
+    const contract = contracts.find((contract) => contract.job._id === contractId);
+    // const contract = {
+    //     amount: "10000",
+    //     client: {
+    //       __v: 0,
+    //       _id: "66f9b0e6a7d7a6329c4876b7",
+    //       accountCreatedAt: "2024-09-29T19:23:28.406Z",
+    //       backIdPhotoUrl: "https://firebasestorage.googleapis.com/v0/b/blockworkcloud.appspot.com/o/users%2F1727639770736_backIdPhoto.jpg?alt=media&token=9c705537-767a-4a4f-aa51-155280c1ec8e",
+    //       bio: "iam a freelancer",
+    //       country: "egypt",
+    //       email: "noranmohammed2310@gmail.com",
+    //       frontIdPhotoUrl: "https://firebasestorage.googleapis.com/v0/b/blockworkcloud.appspot.com/o/users%2F1727639770736_frontIdPhoto.jpg?alt=media&token=179fffe7-c5fa-41c2-9e1b-845d31d5bca2",
+    //       jobTitle: "Full stack web dev",
+    //       name: "Noran",
+    //       nationalId: "30103141401645",
+    //       phone: "01001548671",
+    //       role: "Client",
+    //       skills: [],
+    //       socketId: null,
+    //       userPhotoUrl: "https://firebasestorage.googleapis.com/v0/b/blockworkcloud.appspot.com/o/users%2F1727639770736_userPhoto.jpg?alt=media&token=7bb6a0cb-d60d-4992-b406-18723c8849ca",
+    //       verified: false
+    //     },
+    //     createdDate: "2024-09-30T18:19:24.000Z",
+    //     duration: "20",
+    //     freelancer: {
+    //       __v: 0,
+    //       _id: "66f9b0e6a7d7a6329c4876b7",
+    //       accountCreatedAt: "2024-09-29T19:23:28.406Z",
+    //       backIdPhotoUrl: "https://firebasestorage.googleapis.com/v0/b/blockworkcloud.appspot.com/o/users%2F1727639770736_backIdPhoto.jpg?alt=media&token=9c705537-767a-4a4f-aa51-155280c1ec8e",
+    //       bio: "iam a freelancer",
+    //       country: "egypt",
+    //       email: "Othman12@gmail.com",
+    //       frontIdPhotoUrl: "https://firebasestorage.googleapis.com/v0/b/blockworkcloud.appspot.com/o/users%2F1727639770736_frontIdPhoto.jpg?alt=media&token=179fffe7-c5fa-41c2-9e1b-845d31d5bca2",
+    //       jobTitle: "Full stack web dev",
+    //       name: "AhmedOthman",
+    //       nationalId: "30003110104659",
+    //       phone: "01064568074",
+    //       role: "freelancer",
+    //       skills: [],
+    //       socketId: null,
+    //       userPhotoUrl: "https://firebasestorage.googleapis.com/v0/b/blockworkcloud.appspot.com/o/users%2F1727639770736_userPhoto.jpg?alt=media&token=7bb6a0cb-d60d-4992-b406-18723c8849ca",
+    //       verified: false
+    //     },
+    //     job: {
+    //       __v: 0,
+    //       _id: "66f9740580822a876ce539e5",
+    //       budget: 2000,
+    //       category: "Web Development",
+    //       client: "66f8837ef3d43d1de8fd4976",
+    //       createdAt: "2024-09-29T15:36:37.275Z",
+    //       description: "We need a React developer",
+    //       duration: 10,
+    //       isActive: true,
+    //       skillsRequired: [],
+    //       title: "Frontend Developer Needed"
+    //     },
+    //     status: "0"
+    //   };
 
       function convertDate(isoDateString) {
         const date = new Date(isoDateString);
