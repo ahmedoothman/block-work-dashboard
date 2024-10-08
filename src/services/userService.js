@@ -7,6 +7,8 @@ export const loginService = async (data) => {
   try {
     const response = await axios.post(`${API_URL}/api/admins/login`, data);
     Cookies.set('token', response.data.token, { expires: 1 });
+    Cookies.set('name', response.data.data.user.name, { expires: 1 });
+
     return { status: 'success', data: response.data };
   } catch (error) {
     if (error.code === 'ERR_NETWORK') {
@@ -98,8 +100,6 @@ export const updateMeService = async (name, email, phoneNumber) => {
   }
 };
 
-
-
 export const getAllUsers = async () => {
   let token = Cookies.get('token');
   try {
@@ -109,8 +109,7 @@ export const getAllUsers = async () => {
       },
     });
     return { status: 'success', data: response.data.data };
-  } 
-  catch (error) {
+  } catch (error) {
     if (error.code === 'ERR_NETWORK') {
       return {
         status: 'error',
@@ -126,7 +125,6 @@ export const getAllUsers = async () => {
     }
   }
 };
-
 
 export const verifyUser = async (userID) => {
   let token = Cookies.get('token');
@@ -156,6 +154,4 @@ export const verifyUser = async (userID) => {
       };
     }
   }
-
 };
-
