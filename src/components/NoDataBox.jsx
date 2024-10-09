@@ -7,14 +7,14 @@ const NoDataBox = ({ Title, Message, OnPress, btnTitle, show }) => {
     <Container>
       <Box sx={{ margin: 2 }}>
         <Box sx={styles.noDatacontentContainer}>
-          <Typography variant="h5" sx={styles.noDataTitle}>
+          <Typography variant='h5' sx={styles.noDataTitle}>
             {Title}
           </Typography>
-          <Typography variant="subtitle1" sx={styles.noDataMessage}>
+          <Typography variant='subtitle1' sx={styles.noDataMessage}>
             {Message}
           </Typography>
           {show ? (
-            <Button variant="contained" sx={styles.btn} onClick={OnPress}>
+            <Button variant='contained' sx={styles.btn} onClick={OnPress}>
               {btnTitle}
             </Button>
           ) : (
@@ -29,7 +29,7 @@ const NoDataBox = ({ Title, Message, OnPress, btnTitle, show }) => {
 const styles = {
   noDatacontentContainer: {
     backgroundColor: theme.palette.secondary.main,
-    borderRadius: 10,
+    borderRadius: '10px',
     padding: '20px',
     textAlign: 'center',
     margin: '50px 0',
@@ -38,13 +38,13 @@ const styles = {
     color: theme.palette.primary.light,
   },
   noDataMessage: {
-    color: theme.palette.secondary.dark,
+    color: 'white',
     textAlign: 'center',
     margin: '15px 0',
   },
   btn: {
     backgroundColor: theme.palette.primary.dark,
-    color: "white",
+    color: 'white',
   },
 };
 

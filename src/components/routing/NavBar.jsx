@@ -20,7 +20,7 @@ import Logo from '../logo';
 import theme from '../../mui/theme';
 import Cookies from 'js-cookie';
 
-const pages = ['Users', 'Contracts', 'Dashboard'];
+const pages = ['Dashboard', 'Users', 'Contracts'];
 
 function NavBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);

@@ -61,6 +61,8 @@ function Users() {
       sx={{
         backgroundColor: 'black',
         width: '100%',
+        minHeight: '100vh',
+        paddingBlock: '20px',
       }}
     >
       {/*  Search and filter  Section in Page*/}
