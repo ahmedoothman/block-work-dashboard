@@ -205,7 +205,16 @@ function Charts() {
                 },
               }}
             >
-              <Bar data={barData} options={options} />
+              <Bar
+                data={barData}
+                options={{
+                  ...options,
+                  plugins: {
+                    legend: { position: 'top' },
+                    title: { display: true, text: 'Blockwork Overview' },
+                  },
+                }}
+              />
             </Box>
           </Grid>
 
@@ -279,7 +288,16 @@ function Charts() {
                 },
               }}
             >
-              <Doughnut data={doughnutData} options={options} />
+              <Doughnut
+                data={doughnutData}
+                options={{
+                  ...options,
+                  plugins: {
+                    legend: { position: 'top' },
+                    title: { display: true, text: 'Jobs Status Overview ' },
+                  },
+                }}
+              />
             </Box>
           </Grid>
 
@@ -302,7 +320,16 @@ function Charts() {
                 },
               }}
             >
-              <Pie data={pieData} options={options} />
+              <Pie
+                data={pieData}
+                options={{
+                  ...options,
+                  plugins: {
+                    legend: { position: 'top' },
+                    title: { display: true, text: 'Job Categories Overview' },
+                  },
+                }}
+              />
             </Box>
           </Grid>
 
@@ -324,7 +351,19 @@ function Charts() {
                 },
               }}
             >
-              <Line data={lineData} options={options} />
+              <Line
+                data={lineData}
+                options={{
+                  ...options,
+                  plugins: {
+                    legend: { position: 'top' },
+                    title: {
+                      display: true,
+                      text: 'Number Of Contracts For Each Status',
+                    },
+                  },
+                }}
+              />
             </Box>
           </Grid>
 
