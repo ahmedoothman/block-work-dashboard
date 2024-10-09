@@ -53,6 +53,7 @@ function NavBar() {
   const handleLogout = () => {
     console.log('User logged out', user);
     Cookies.remove('token');
+    Cookies.remove('name');
     dispatch(authActions.logout());
     navigate('/');
   };
