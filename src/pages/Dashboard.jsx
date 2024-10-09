@@ -12,7 +12,13 @@ import {
   Legend,
   PointElement,
 } from 'chart.js';
-import { Container, Grid, Box, Typography } from '@mui/material';
+import {
+  Container,
+  Grid,
+  Box,
+  Typography,
+  CircularProgress,
+} from '@mui/material';
 import theme from '../mui/theme';
 import { getStatsService } from '../services/statsService';
 
@@ -59,7 +65,12 @@ function Charts() {
         }}
       >
         <Typography variant='h5' sx={{ color: theme.palette.primary.light }}>
-          Loading...
+          <CircularProgress
+            sx={{
+              color: theme.palette.primary.main,
+            }}
+            size={80}
+          />
         </Typography>
       </Container>
     );
@@ -158,7 +169,14 @@ function Charts() {
     responsive: true,
     plugins: {
       legend: { position: 'top' },
-      title: { display: true, text: 'Chart Overview' },
+      title: {
+        display: true,
+        text: 'Chart Overview',
+        font: {
+          size: 24, // Bigger font size
+        },
+        color: '#FFFFFF', // White color },
+      },
     },
   };
 
@@ -167,7 +185,13 @@ function Charts() {
     responsive: true,
     plugins: {
       legend: { position: 'top' },
-      title: { display: true, text: 'Users Distribution Overview' },
+      title: {
+        display: true,
+        text: 'Users Distribution Overview',
+        font: {
+          size: 24, // Bigger font size
+        },
+      },
     },
   };
 
@@ -211,7 +235,11 @@ function Charts() {
                   ...options,
                   plugins: {
                     legend: { position: 'top' },
-                    title: { display: true, text: 'Blockwork Overview' },
+                    title: {
+                      display: true,
+                      text: 'Blockwork Overview',
+                      font: { size: 24, color: '#FFFFFF' },
+                    },
                   },
                 }}
               />
@@ -240,16 +268,14 @@ function Charts() {
             >
               <Typography
                 variant='h4'
-                sx={{ color: theme.palette.secondary.lightGray }}
+                sx={{ color: '#6A6A6A', fontWeight: 'bold' }}
               >
                 Profit
               </Typography>
               <Box
                 sx={{
-                  background: 'rgba(255, 255, 255, 0.1)',
                   padding: 4,
                   borderRadius: 4,
-                  border: `1px solid ${theme.palette.primary.main}`,
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
@@ -294,7 +320,15 @@ function Charts() {
                   ...options,
                   plugins: {
                     legend: { position: 'top' },
-                    title: { display: true, text: 'Jobs Status Overview ' },
+                    title: {
+                      display: true,
+                      text: 'Jobs Status Overview ',
+                      font: {
+                        size: 24,
+                        color: '#FFF',
+                        font: { size: 24, color: '#FFFFFF' },
+                      },
+                    },
                   },
                 }}
               />
@@ -326,7 +360,11 @@ function Charts() {
                   ...options,
                   plugins: {
                     legend: { position: 'top' },
-                    title: { display: true, text: 'Job Categories Overview' },
+                    title: {
+                      display: true,
+                      text: 'Job Categories Overview',
+                      font: { size: 24, color: '#FFFFFF' },
+                    },
                   },
                 }}
               />
@@ -359,7 +397,8 @@ function Charts() {
                     legend: { position: 'top' },
                     title: {
                       display: true,
-                      text: 'Number Of Contracts For Each Status',
+                      text: 'No. Contracts For Each Status',
+                      font: { size: 24, color: '#FFFFFF' },
                     },
                   },
                 }}

@@ -14,7 +14,7 @@ import SearchBarContract from '../components/contracts/SearchBarContract';
 import HeaderContractsGrid from '../components/contracts/HeaderContractsGrid';
 import NoDataBox from '../components/NoDataBox';
 import { color } from 'chart.js/helpers';
-
+import theme from '../mui/theme';
 function Contracts() {
   const [contracts, setContracts] = useState([]);
   const [filteredContracts, setFilteredContracts] = useState([]);
@@ -75,7 +75,12 @@ function Contracts() {
       {/* Loading Indicator */}
       {isLoading ? (
         <Box style={styles.loadingIndicator}>
-          <CircularProgress color='inherit' size={80} />
+          <CircularProgress
+            sx={{
+              color: theme.palette.primary.main,
+            }}
+            size={80}
+          />
         </Box>
       ) : error ? (
         <Alert severity='error' sx={{ marginBottom: '5px' }}>

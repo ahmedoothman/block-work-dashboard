@@ -13,7 +13,7 @@ import UsersFilter from '../components/dashboard/UsersFilter';
 import { getAllUsers } from '../services/userService';
 import { userActions } from '../store/users-slice';
 import { useDispatch } from 'react-redux';
-
+import theme from '../mui/theme';
 function Users() {
   const [users, setUsers] = useState([]);
   const [filteredUsers, setFilteredUsers] = useState([]);
@@ -27,8 +27,12 @@ function Users() {
       setIsLoading(true);
       const response = await getAllUsers();
       if (response.status === 'success') {
-        setUsers(response.data);
-        setFilteredUsers(response.data);
+        // remove user with name System
+        const filteredUsers = response.data.filter(
+          (user) => user.name !== 'System'
+        );
+        setUsers(filteredUsers);
+        setFilteredUsers(filteredUsers);
         dispatch(userActions.setUsers(response.data));
       } else {
         setError(true);
@@ -82,7 +86,12 @@ function Users() {
 
       {isLoading ? (
         <Box style={styles.loadingIndicator}>
-          <CircularProgress color='inherit' size={50} />
+          <CircularProgress
+            sx={{
+              color: theme.palette.primary.main,
+            }}
+            size={80}
+          />
         </Box>
       ) : error ? (
         <Alert severity='error' sx={{ marginBottom: '5px' }}>
