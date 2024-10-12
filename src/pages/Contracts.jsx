@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-
 import { useDispatch } from 'react-redux';
 import { contractsActions } from '../store/contracts-slice';
 import { getAllContractsService } from '../services/contractService';
@@ -8,19 +7,22 @@ import Container from '@mui/material/Container';
 import Alert from '@mui/material/Alert';
 import { Box, Stack } from '@mui/material';
 import CircularProgress from '@mui/material/CircularProgress';
+import Pagination from '@mui/material/Pagination';
 
 import ContractBox from '../components/contracts/ContractBox';
 import SearchBarContract from '../components/contracts/SearchBarContract';
 import HeaderContractsGrid from '../components/contracts/HeaderContractsGrid';
 import NoDataBox from '../components/NoDataBox';
-import { color } from 'chart.js/helpers';
 import theme from '../mui/theme';
+
 function Contracts() {
   const [contracts, setContracts] = useState([]);
   const [filteredContracts, setFilteredContracts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
+  const contractsPerPage = 2; 
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -29,7 +31,7 @@ function Contracts() {
       const response = await getAllContractsService();
       if (response.status === 'success') {
         setContracts(response.data);
-        setFilteredContracts(response.data);
+        setFilteredContracts(response.data); 
         dispatch(contractsActions.setContracts(response.data));
       } else {
         setError(true);
@@ -42,7 +44,15 @@ function Contracts() {
     fetchContracts();
   }, [dispatch]);
 
-  console.log('contractsssss', contracts[0]);
+
+  const handlePageChange = (event, value) => {
+    setCurrentPage(value);
+  };
+
+  
+  const indexOfLastContract = currentPage * contractsPerPage;
+  const indexOfFirstContract = indexOfLastContract - contractsPerPage;
+  const currentContracts = filteredContracts.slice(indexOfFirstContract, indexOfLastContract);
 
   return (
     <Container
@@ -51,7 +61,6 @@ function Contracts() {
       disableGutters
       sx={{
         backgroundColor: 'black',
-        // height: "100vh",
         minHeight: '100vh',
         width: '100%',
         overflowY: 'auto',
@@ -89,9 +98,9 @@ function Contracts() {
       ) : (
         <>
           {filteredContracts.length > 0 && <HeaderContractsGrid />}
-          {/* Contracts List */}
-          {filteredContracts.length > 0 ? (
-            filteredContracts.map((contract, index) => (
+        
+          {currentContracts.length > 0 ? (
+            currentContracts.map((contract, index) => (
               <ContractBox
                 key={contract.job?._id || index}
                 contractData={contract}
@@ -106,6 +115,17 @@ function Contracts() {
           )}
         </>
       )}
+
+    
+      <Stack spacing={2} sx={{ justifyContent: 'center', alignItems: 'center', mt: 3 }}>
+        <Pagination
+          count={Math.ceil(filteredContracts.length / contractsPerPage)} 
+          page={currentPage}
+          onChange={handlePageChange}
+          color="primary"
+     
+        />
+      </Stack>
     </Container>
   );
 }
