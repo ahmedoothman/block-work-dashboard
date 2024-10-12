@@ -4,6 +4,7 @@ import Container from '@mui/material/Container';
 import Alert from '@mui/material/Alert';
 import { Box, Stack } from '@mui/material';
 import CircularProgress from '@mui/material/CircularProgress';
+import Pagination from '@mui/material/Pagination';
 
 import UserBox from '../components/dashboard/UserBox';
 import NoDataBox from '../components/NoDataBox';
@@ -14,12 +15,15 @@ import { getAllUsers } from '../services/userService';
 import { userActions } from '../store/users-slice';
 import { useDispatch } from 'react-redux';
 import theme from '../mui/theme';
+
 function Users() {
   const [users, setUsers] = useState([]);
   const [filteredUsers, setFilteredUsers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
+  const usersPerPage = 3; 
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -27,7 +31,7 @@ function Users() {
       setIsLoading(true);
       const response = await getAllUsers();
       if (response.status === 'success') {
-        // remove user with name System
+       
         const filteredUsers = response.data.filter(
           (user) => user.name !== 'System'
         );
@@ -44,17 +48,26 @@ function Users() {
     };
     fetchUsers();
   }, []);
-  // console.log("userrrrs",users);
+
+  
+  const handlePageChange = (event, value) => {
+    setCurrentPage(value);
+  };
+
+  
+  const indexOfLastUser = currentPage * usersPerPage;
+  const indexOfFirstUser = indexOfLastUser - usersPerPage;
+  const currentUsers = filteredUsers.slice(indexOfFirstUser, indexOfLastUser);
 
   function showAllUsers() {
-    // console.log("All users shooownn")
     setFilteredUsers(users);
+    setCurrentPage(1); 
   }
 
   function showPendingUsers() {
-    // console.log(" Pending userss shooownn")
-    const notVerfiedUsers = users.filter((user) => !user.verified);
-    setFilteredUsers(notVerfiedUsers);
+    const notVerifiedUsers = users.filter((user) => !user.verified);
+    setFilteredUsers(notVerifiedUsers);
+    setCurrentPage(1); 
   }
 
   return (
@@ -69,7 +82,7 @@ function Users() {
         paddingBlock: '20px',
       }}
     >
-      {/*  Search and filter  Section in Page*/}
+      {/*  Search and filter  Section in Page */}
       <Stack
         sx={{
           flexDirection: 'row',
@@ -97,8 +110,8 @@ function Users() {
         <Alert severity='error' sx={{ marginBottom: '5px' }}>
           {errorMessage}
         </Alert>
-      ) : filteredUsers.length > 0 ? (
-        filteredUsers.map((user) => <UserBox key={user._id} userData={user} />)
+      ) : currentUsers.length > 0 ? (
+        currentUsers.map((user) => <UserBox key={user._id} userData={user} />)
       ) : (
         <NoDataBox
           Title={'No Users Found'}
@@ -106,6 +119,22 @@ function Users() {
           show={false}
         />
       )}
+
+      {/* Pagination Section */}
+      <Stack spacing={2} sx={{ justifyContent: 'center', alignItems: 'center', mt: 3 }}>
+        <Pagination
+          count={Math.ceil(filteredUsers.length / usersPerPage)} 
+          page={currentPage}
+          onChange={handlePageChange}
+          color="primary"
+          sx={{
+            '& .MuiPaginationItem-root': {
+              fontSize: '1.1rem', // Further increase font size
+              padding: '5px 15px', // Add more padding
+            },
+          }}
+        />
+      </Stack>
     </Container>
   );
 }
