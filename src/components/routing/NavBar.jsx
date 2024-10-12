@@ -177,7 +177,7 @@ function NavBar() {
                 {user.name}
               </Typography>
               <IconButton onClick={handleLogout} color='inherit'>
-                <LogoutIcon sx={{ fontSize: '24px' }} />
+                <LogoutIcon sx={{ fontSize: '24px', color: theme.palette.primary.light }} />
               </IconButton>
             </Stack>
 
