@@ -183,7 +183,7 @@ function UserDetails() {
             gutterBottom
           >
             <LocationOnIcon
-              sx={{ marginRight: '4px', verticalAlign: 'middle' }}
+              sx={{ marginRight: '4px', verticalAlign: 'middle',color: theme.palette.text.primary }}
             />
             {userData.country?.charAt(0).toUpperCase() + user.country?.slice(1)}
           </Typography>

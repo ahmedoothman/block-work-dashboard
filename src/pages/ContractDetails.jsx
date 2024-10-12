@@ -261,9 +261,23 @@ function ContractDetails() {
               sx={{ backgroundColor: theme.palette.text.secondary, my: 4 }}
             />
             <Stack spacing={2}>
-              <Typography variant='h6' sx={{ color: theme.palette.text.white }}>
-                Contract Details
-              </Typography>
+              <Stack flexDirection={'row'} justifyContent={'space-between'}>
+                <Typography variant='h6' sx={{ color: theme.palette.text.white }}>
+                  Contract Details
+                </Typography>
+                <Typography
+                  variant='h6'
+                  sx={{ color: 
+                      contract.status==='completed'? theme.palette.success.main:
+                      contract.status==='pending'?theme.palette.text.primary:
+                      contract.status==='cancled'?theme.palette.error.main : theme.palette.text.secondary,
+                      
+                   }}
+                >
+                  {contract.status.charAt(0).toUpperCase()+ contract.status.slice(1)}
+                </Typography>
+              </Stack>
+
               <Typography
                 variant='body1'
                 sx={{ color: theme.palette.text.secondary }}
@@ -318,15 +332,7 @@ function ContractDetails() {
                 </strong>{' '}
                 {convertDate(contract.createdDate)}
               </Typography>
-              <Typography
-                variant='body1'
-                sx={{ color: theme.palette.text.secondary }}
-              >
-                <strong style={{ color: theme.palette.text.primary }}>
-                  Status:
-                </strong>{' '}
-                {contract.status}
-              </Typography>
+             
             </Stack>
           </Grid>
         </Grid>
