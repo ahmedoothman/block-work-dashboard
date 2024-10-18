@@ -269,7 +269,7 @@ function ContractDetails() {
                   variant='h6'
                   sx={{ color: 
                       contract.status==='completed'? theme.palette.success.main:
-                      contract.status==='pending'?theme.palette.text.primary:
+                      contract.status==='pending'?theme.palette.warning.main:
                       contract.status==='cancled'?theme.palette.error.main : theme.palette.text.secondary,
                       
                    }}
