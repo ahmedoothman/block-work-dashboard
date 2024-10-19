@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { Bar, Line, Pie, Doughnut } from 'react-chartjs-2';
+import React, { useEffect, useState } from "react";
+import { Bar, Line, Pie, Doughnut } from "react-chartjs-2";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -11,17 +11,17 @@ import {
   Tooltip,
   Legend,
   PointElement,
-} from 'chart.js';
+} from "chart.js";
 import {
   Container,
   Grid,
   Box,
   Typography,
   CircularProgress,
-} from '@mui/material';
-import theme from '../mui/theme';
-import { getStatsService } from '../services/statsService';
-import { color } from 'chart.js/helpers';
+} from "@mui/material";
+import theme from "../mui/theme";
+import { getStatsService } from "../services/statsService";
+import { color } from "chart.js/helpers";
 
 // Register chart components
 ChartJS.register(
@@ -42,7 +42,7 @@ function Charts() {
   useEffect(() => {
     const fetchData = async () => {
       const response = await getStatsService();
-      if (response.status === 'success') {
+      if (response.status === "success") {
         setChartData(response.data);
       } else {
         console.log(response.message);
@@ -58,14 +58,14 @@ function Charts() {
         disableGutters
         maxWidth={false}
         sx={{
-          backgroundColor: 'black',
-          minHeight: '100vh',
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
+          backgroundColor: "black",
+          minHeight: "100vh",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
         }}
       >
-        <Typography variant='h5' sx={{ color: theme.palette.primary.light }}>
+        <Typography variant="h5" sx={{ color: theme.palette.primary.light }}>
           <CircularProgress
             sx={{
               color: theme.palette.primary.main,
@@ -82,17 +82,17 @@ function Charts() {
 
   // Data for Charts
   const barData = {
-    labels: ['Users', 'Proposals', 'Contracts', 'Jobs'],
+    labels: ["Users", "Proposals", "Contracts", "Jobs"],
     datasets: [
       {
-        label: 'Blockwork Overview',
+        label: "Blockwork Overview",
         data: [
           overview.Users,
           overview.Proposals,
           overview.Contracts,
           overview.Jobs,
         ],
-        backgroundColor:theme.palette.primary.main,
+        backgroundColor: theme.palette.primary.main,
         borderColor: theme.palette.primary.main,
         borderWidth: 1,
       },
@@ -103,32 +103,47 @@ function Charts() {
     labels: contracts.map((obj) => obj.status),
     datasets: [
       {
-        label: 'Number Of Contracts For Each Status',
+        label: "Number Of Contracts For Each Status",
         data: contracts.map((obj) => obj.numberOfContracts),
         fill: false,
-        borderColor: '#00BFFF', // Light Blue 
+        // borderColor: '#00BFFF', // Light Blue
+        borderColor: theme.palette.primary.light,
         tension: 0.1,
       },
     ],
   };
 
   const pieData = {
-    labels: ['Freelancers', 'Clients'],
+    labels: ["Freelancers", "Clients"],
     datasets: [
       {
-        label: 'Users Distribution',
+        label: "Users Distribution",
         data: [userCounts.freelancers.count, userCounts.clients.count],
         backgroundColor: [
-          '#FF8C00',
-          '#00BFFF',
-          '#FF4500',
-          '#008080',
+          // '#FF8C00',
+          // '#66BB6A',
+          // '#FFEB3B',
+          // '#EC407A',
+          "#1FD91F",
+          "#D9D9D9",
+          //  '#00BFFF',
+          //  '#42A5F5',
+          // '#39d3fa',
+          // '#4CAF50',
+
+          // '#26A69A',
+          // '#66BB6A',
+
+          "#FF4500",
+          "#008080",
         ],
         borderColor: [
-          '#FF8C00',
-          '#00BFFF',
-          '#FF4500',
-          '#008080',
+          // '#FF8C00',
+          // '#00BFFF',
+          // '#FF4500',
+          // '#008080',
+          "#1FD91F",
+          "#D9D9D9",
           // 'rgba(54, 162, 235, 1)',
           // 'rgba(255, 206, 86, 1)',
           // 'rgba(230, 230, 250, 1)',
@@ -143,23 +158,10 @@ function Charts() {
     labels: status.map((obj) => obj.statusName),
     datasets: [
       {
-        label: 'Job Status',
+        label: "Job Status",
         data: status.map((obj) => obj.numberOfJobs),
-        backgroundColor: [
-          '#00BFFF', // Light Blue 
-          '#008080', //Teal 
-          '#FF8C00', //Medium Orange
-          '#FF4500', // Dark Orange
-          // 'rgba(54, 162, 235, 1)',
-          // 'rgba(211, 211, 211, 1)',
-          // 'rgba(255, 206, 86, 1)',
-        ],
-        borderColor: [ 
-          '#00BFFF',
-          '#008080',
-          '#FF8C00',
-          '#FF4500',
-        ],
+        backgroundColor: ["#D9D9D9", "#00BFFF", "#1FD91F"],
+        borderColor: ["#D9D9D9", "#00BFFF", "#1FD91F"],
         borderWidth: 2,
       },
     ],
@@ -169,7 +171,7 @@ function Charts() {
     labels: categories.map((obj) => obj.categoryName),
     datasets: [
       {
-        label: 'Job Categories',
+        label: "Job Categories",
         data: categories.map((obj) => obj.totalJobs),
         backgroundColor: theme.palette.primary.main,
         borderColor: theme.palette.primary.dark,
@@ -183,30 +185,30 @@ function Charts() {
   const options = {
     responsive: true,
     plugins: {
-      legend: { position: 'top' },
+      legend: { position: "top" },
       title: {
         display: true,
-        text: 'Chart Overview',
+        text: "Chart Overview",
         font: {
           size: 24, // Bigger font size
         },
-        color: '#FFFFFF', // Ensure this is white
+        color: "#FFFFFF", // Ensure this is white
       },
     },
   };
 
   const horizontalOptions = {
-    indexAxis: 'y',
+    indexAxis: "y",
     responsive: true,
     plugins: {
-      legend: { position: 'top' },
+      legend: { position: "top" },
       title: {
         display: true,
-        text: 'Job Categories Overview',
+        text: "Job Categories Overview",
         font: {
           size: 24, // Bigger font size
         },
-        color:'#FFFFFF'
+        color: "#FFFFFF",
       },
     },
     barPercentage: 0.5, // Decrease this to increase space between individual bars (bars from the same dataset)
@@ -218,38 +220,38 @@ function Charts() {
       disableGutters
       maxWidth={false}
       sx={{
-        backgroundColor: 'black',
-        minHeight: '100vh',
-        padding: '20px',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
+        backgroundColor: "black",
+        minHeight: "100vh",
+        padding: "20px",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
       }}
     >
-      <Container sx={{ width: '90%' }}>
+      <Container sx={{ width: "90%" }}>
         <Grid container spacing={2}>
           {/* First Row */}
           <Grid item xs={12} sm={4}>
             <Box
               sx={{
                 backgroundColor: theme.palette.secondary.dark,
-                padding: '20px',
-                borderRadius: '10px',
+                padding: "20px",
+                borderRadius: "10px",
                 boxShadow: 3,
-                height: '100%',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
+                height: "100%",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
                 flexGrow: 1,
-                width: '100%', // Ensure it takes full width
-                transition: 'transform 0.2s, box-shadow 0.2s',
-                '&:hover': {
-                  transform: 'scale(1.02)',
+                width: "100%", // Ensure it takes full width
+                transition: "transform 0.2s, box-shadow 0.2s",
+                "&:hover": {
+                  transform: "scale(1.02)",
                   boxShadow: 8,
                 },
               }}
             >
-             <Bar
+              <Bar
                 data={barData}
                 options={{
                   ...options,
@@ -257,12 +259,12 @@ function Charts() {
                     ...options.plugins, // Spread existing plugins to keep legend settings
                     title: {
                       ...options.plugins.title, // Spread the title options to keep the font size
-                      text: 'Blockwork Overview', // Title text specific to this chart
-                      color: '#FFFFFF', // Explicitly set to white
+                      text: "Blockwork Overview", // Title text specific to this chart
+                      color: "#FFFFFF", // Explicitly set to white
                     },
                   },
                 }}
-            />
+              />
             </Box>
           </Grid>
 
@@ -270,27 +272,27 @@ function Charts() {
             <Box
               sx={{
                 backgroundColor: theme.palette.secondary.dark,
-                padding: '20px',
-                borderRadius: '10px',
+                padding: "20px",
+                borderRadius: "10px",
                 boxShadow: 6,
-                height: '100%',
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'center',
-                alignItems: 'center',
+                height: "100%",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                alignItems: "center",
                 gap: 2,
                 flexGrow: 1,
-                width: '100%',
-                transition: 'transform 0.2s, box-shadow 0.2s',
-                '&:hover': {
-                  transform: 'scale(1.02)',
+                width: "100%",
+                transition: "transform 0.2s, box-shadow 0.2s",
+                "&:hover": {
+                  transform: "scale(1.02)",
                   boxShadow: 8,
                 },
               }}
             >
               <Typography
-                variant='h4'
-                sx={{ color: '#FFFFFF', fontWeight: 'bold' }}
+                variant="h4"
+                sx={{ color: "#FFFFFF", fontWeight: "bold" }}
               >
                 Profit
               </Typography>
@@ -298,19 +300,19 @@ function Charts() {
                 sx={{
                   padding: 4,
                   borderRadius: 4,
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
                   boxShadow: 3,
-                  transition: 'box-shadow 0.2s',
-                  '&:hover': {
+                  transition: "box-shadow 0.2s",
+                  "&:hover": {
                     boxShadow: 5,
                   },
                 }}
               >
                 <Typography
-                  variant='h3'
-                  sx={{ color: theme.palette.primary.main, fontWeight: 'bold' }}
+                  variant="h3"
+                  sx={{ color: theme.palette.primary.main, fontWeight: "bold" }}
                 >
                   ${profit.toLocaleString()}
                 </Typography>
@@ -322,18 +324,18 @@ function Charts() {
             <Box
               sx={{
                 backgroundColor: theme.palette.secondary.dark,
-                padding: '20px',
-                borderRadius: '10px',
+                padding: "20px",
+                borderRadius: "10px",
                 boxShadow: 3,
-                height: '100%',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
+                height: "100%",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
                 flexGrow: 1,
-                width: '100%',
-                transition: 'transform 0.2s, box-shadow 0.2s',
-                '&:hover': {
-                  transform: 'scale(1.02)',
+                width: "100%",
+                transition: "transform 0.2s, box-shadow 0.2s",
+                "&:hover": {
+                  transform: "scale(1.02)",
                   boxShadow: 8,
                 },
               }}
@@ -343,11 +345,11 @@ function Charts() {
                 options={{
                   ...options,
                   plugins: {
-                      ...options.plugins ,
+                    ...options.plugins,
                     title: {
-                        ...options.plugins.title ,
-                      text: 'Job Status Overview',
-                      font: { size: 24, color: '#FFFFFF' },
+                      ...options.plugins.title,
+                      text: "Job Status Overview",
+                      font: { size: 24, color: "#FFFFFF" },
                     },
                   },
                 }}
@@ -360,18 +362,18 @@ function Charts() {
             <Box
               sx={{
                 backgroundColor: theme.palette.secondary.dark,
-                padding: '20px',
-                borderRadius: '10px',
+                padding: "20px",
+                borderRadius: "10px",
                 boxShadow: 3,
-                height: '100%',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
+                height: "100%",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
                 flexGrow: 1,
-                width: '100%',
-                transition: 'transform 0.2s, box-shadow 0.2s',
-                '&:hover': {
-                  transform: 'scale(1.02)',
+                width: "100%",
+                transition: "transform 0.2s, box-shadow 0.2s",
+                "&:hover": {
+                  transform: "scale(1.02)",
                   boxShadow: 8,
                 },
               }}
@@ -381,11 +383,11 @@ function Charts() {
                 options={{
                   ...options,
                   plugins: {
-                      ...options.plugins ,
+                    ...options.plugins,
                     title: {
-                       ...options.plugins.title ,
-                      text: 'Users Distribution Overview',
-                      font: { size: 24, color: '#FFFFFF' },
+                      ...options.plugins.title,
+                      text: "Users Distribution Overview",
+                      font: { size: 24, color: "#FFFFFF" },
                     },
                   },
                 }}
@@ -397,18 +399,18 @@ function Charts() {
             <Box
               sx={{
                 backgroundColor: theme.palette.secondary.dark,
-                padding: '20px',
-                borderRadius: '10px',
+                padding: "20px",
+                borderRadius: "10px",
                 boxShadow: 3,
-                height: '100%',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
+                height: "100%",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
                 flexGrow: 1,
-                width: '100%',
-                transition: 'transform 0.2s, box-shadow 0.2s',
-                '&:hover': {
-                  transform: 'scale(1.02)',
+                width: "100%",
+                transition: "transform 0.2s, box-shadow 0.2s",
+                "&:hover": {
+                  transform: "scale(1.02)",
                   boxShadow: 8,
                 },
               }}
@@ -418,11 +420,11 @@ function Charts() {
                 options={{
                   ...options,
                   plugins: {
-                     ...options.plugins ,
+                    ...options.plugins,
                     title: {
-                      ...options.plugins.title ,
-                      text: 'No. Contracts For Each Status',
-                      font: { size: 24, color: '#FFFFFF' },
+                      ...options.plugins.title,
+                      text: "No. Contracts For Each Status",
+                      font: { size: 24, color: "#FFFFFF" },
                     },
                   },
                 }}
@@ -435,18 +437,18 @@ function Charts() {
             <Box
               sx={{
                 backgroundColor: theme.palette.secondary.dark,
-                padding: '20px',
-                borderRadius: '10px',
+                padding: "20px",
+                borderRadius: "10px",
                 boxShadow: 3,
-                height: '100%',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
+                height: "100%",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
                 flexGrow: 1,
-                width: '100%',
-                transition: 'transform 0.2s, box-shadow 0.2s',
-                '&:hover': {
-                  transform: 'scale(1.02)',
+                width: "100%",
+                transition: "transform 0.2s, box-shadow 0.2s",
+                "&:hover": {
+                  transform: "scale(1.02)",
                   boxShadow: 8,
                 },
               }}

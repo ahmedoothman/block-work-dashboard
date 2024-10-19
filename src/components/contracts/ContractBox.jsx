@@ -6,14 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 function ContractBox({ contractData }) {
   const navigate = useNavigate();
-  const { client, freelancer, job } = contractData;
-  // console.log("clinet",client);
-  // console.log("freelancer",freelancer);
-  // console.log("jobbbbb",job);
-  // console.log("Datataaaaa",contractData);
-
-  //console.log("Contract Dataaaaa", contractData);
-  //console.log("Contract ID",contractData.job._id);
+  const { client, freelancer, job, contract } = contractData;
 
   return (
     <>
@@ -58,7 +51,7 @@ function ContractBox({ contractData }) {
             <Typography
               sx={{ color: "white", fontSize: 19, textAlign: "center" }}
             >
-              {job?.description }
+              {job?.description}
             </Typography>
           </Grid>
 
@@ -70,7 +63,7 @@ function ContractBox({ contractData }) {
                 padding: { xs: "8px 16px", sm: "5px 20px" },
                 borderRadius: 1,
               }}
-              onClick={() => navigate(`/contract-details/${job?._id}`)}
+              onClick={() => navigate(`/contract-details/${contract?._id}`)}
             >
               <Typography sx={{ color: "white", textTransform: "capitalize" }}>
                 View

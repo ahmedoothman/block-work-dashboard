@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Typography, useTheme } from '@mui/material';
 
-import logo from '../../public/assets/images/logo.png'; 
+import logo from '../../public/assets/images/logo2.png'; 
 import theme from "../mui/theme";
 
 const Logo = () => {

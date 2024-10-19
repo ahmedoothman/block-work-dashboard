@@ -23,7 +23,7 @@ function Users() {
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
-  const usersPerPage = 3; 
+  const usersPerPage = 4; 
   const dispatch = useDispatch();
 
   useEffect(() => {

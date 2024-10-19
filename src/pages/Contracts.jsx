@@ -11,7 +11,7 @@ import Pagination from '@mui/material/Pagination';
 
 import ContractBox from '../components/contracts/ContractBox';
 import SearchBarContract from '../components/contracts/SearchBarContract';
-import HeaderContractsGrid from '../components/contracts/HeaderContractsGrid';
+import HeaderContractsGrid from  "../components/contracts/HeaderContractsGrid"
 import NoDataBox from '../components/NoDataBox';
 import theme from '../mui/theme';
 
@@ -22,34 +22,40 @@ function Contracts() {
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
-  const contractsPerPage = 2; 
+  const contractsPerPage = 3; 
+
   const dispatch = useDispatch();
 
   useEffect(() => {
     const fetchContracts = async () => {
       setIsLoading(true);
-      const response = await getAllContractsService();
-      if (response.status === 'success') {
-        setContracts(response.data);
-        setFilteredContracts(response.data); 
-        dispatch(contractsActions.setContracts(response.data));
-      } else {
+      try {
+        const response = await getAllContractsService();
+        if (response.status === 'success') {
+          setContracts(response.data);
+          setFilteredContracts(response.data); 
+          dispatch(contractsActions.setContracts(response.data));
+        } else {
+          throw new Error(response.message);
+        }
+      } catch (error) {
         setError(true);
-        setErrorMessage(response.message);
+        setErrorMessage(error.message);
         setContracts([]);
         setFilteredContracts([]);
+      } finally {
+        setIsLoading(false);
       }
-      setIsLoading(false);
     };
     fetchContracts();
   }, [dispatch]);
 
+  // console.log(contracts);
 
   const handlePageChange = (event, value) => {
     setCurrentPage(value);
   };
 
-  
   const indexOfLastContract = currentPage * contractsPerPage;
   const indexOfFirstContract = indexOfLastContract - contractsPerPage;
   const currentContracts = filteredContracts.slice(indexOfFirstContract, indexOfLastContract);
@@ -84,12 +90,7 @@ function Contracts() {
       {/* Loading Indicator */}
       {isLoading ? (
         <Box style={styles.loadingIndicator}>
-          <CircularProgress
-            sx={{
-              color: theme.palette.primary.main,
-            }}
-            size={80}
-          />
+          <CircularProgress sx={{ color: theme.palette.primary.main }} size={80} />
         </Box>
       ) : error ? (
         <Alert severity='error' sx={{ marginBottom: '5px' }}>
@@ -97,12 +98,12 @@ function Contracts() {
         </Alert>
       ) : (
         <>
-          {filteredContracts.length > 0 && <HeaderContractsGrid />}
-        
+        <HeaderContractsGrid/>
+        {/* contract.contract.job?._id  */}
           {currentContracts.length > 0 ? (
-            currentContracts.map((contract, index) => (
+            currentContracts.map((contract) => (
               <ContractBox
-                key={contract.job?._id || index}
+                key={contract.contract._id} // Ensure a unique key
                 contractData={contract}
               />
             ))
@@ -116,16 +117,17 @@ function Contracts() {
         </>
       )}
 
-    
-      <Stack spacing={2} sx={{ justifyContent: 'center', alignItems: 'center', mt: 3 }}>
-        <Pagination
-          count={Math.ceil(filteredContracts.length / contractsPerPage)} 
-          page={currentPage}
-          onChange={handlePageChange}
-          color="primary"
-     
-        />
-      </Stack>
+      {/* Pagination */}
+      {filteredContracts.length > contractsPerPage && (
+        <Stack spacing={2} sx={{ justifyContent: 'center', alignItems: 'center', mt: 3 }}>
+          <Pagination
+            count={Math.ceil(filteredContracts.length / contractsPerPage)}
+            page={currentPage}
+            onChange={handlePageChange}
+            color="primary"
+          />
+        </Stack>
+      )}
     </Container>
   );
 }

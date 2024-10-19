@@ -277,7 +277,8 @@ function UserDetails() {
 
         {/* Approve Button */}
         <Stack alignSelf={'center'} mt={3}>
-          <Button
+          
+          {!userData.verified&& <Button
             variant='contained'
             onClick={handleBtn}
             disabled={Isloading}
@@ -297,6 +298,7 @@ function UserDetails() {
               'Approve'
             )}
           </Button>
+}
         </Stack>
       </Container>
 
