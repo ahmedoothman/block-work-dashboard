@@ -47,6 +47,7 @@ function UserDetails() {
     const response = await verifyUser(userId);
     if ((response.status = 'success')) {
       setDone(true);
+      setuserData((prev)=>({...prev,verified:true}));
       console.log(response.data);
     } else {
       setError(true);
@@ -122,7 +123,7 @@ function UserDetails() {
               <Typography
                 variant='body2'
                 sx={{
-                  color: user.verified
+                  color: userData.verified
                     ? theme.palette.success.main
                     : theme.palette.error.main,
                   fontWeight: 'bold',
